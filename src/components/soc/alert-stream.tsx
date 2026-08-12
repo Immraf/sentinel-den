@@ -39,10 +39,10 @@ export function useAlertStream() {
   mutedRef.current = muted;
 
   const emit = useCallback((scenarioId?: string) => {
-    const s = scenarioId
-      ? scenarios.find((x) => x.id === scenarioId)!
-      : scenarios[cursor.current++ % scenarios.length];
-    const meta = scenarioMeta[s.id];
+    const s =
+      (scenarioId ? scenarios.find((x) => x.id === scenarioId) : undefined) ??
+      scenarios[cursor.current++ % scenarios.length]!;
+    const meta = scenarioMeta[s.id] ?? { severity: "info" as Severity, host: "target-01", sourceIp: LAB.analystIp };
     const alert: LiveAlert = {
       id: `ALR-${String(seq++).padStart(4, "0")}`,
       scenarioId: s.id,
