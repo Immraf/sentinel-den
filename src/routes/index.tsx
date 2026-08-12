@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, SeverityTag, Stat } from "@/components/soc/primitives";
 import { HttpCodes, Timeline, TopSources } from "@/components/soc/charts";
+import { LiveAlertFeed, useAlertStream } from "@/components/soc/alert-stream";
 import { LAB, events, findings, metrics, remediation, scenarios, vms } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/")({
@@ -36,6 +37,7 @@ const nav = [
 ];
 
 function Index() {
+  const { alerts, live, setLive, muted, setMuted, emit } = useAlertStream();
   return (
     <div className="min-h-screen">
       <header className="sticky top-0 z-20 border-b border-border bg-background/85 backdrop-blur">
@@ -125,15 +127,26 @@ function Index() {
             <Stat label="Total security events" value={metrics.totalEvents} hint="last 24h, all hosts" />
             <Stat label="Failed authentication" value={metrics.failedAuth} hint="sshd + sudo" />
             <Stat label="Successful logins" value={metrics.successfulLogins} hint="ssh accepted" />
-            <Stat label="Open alerts" value={metrics.alerts} hint="rule level >= 7" />
+            <Stat
+              label="Open alerts"
+              value={metrics.alerts + alerts.length}
+              hint={`rule level >= 7 · ${alerts.length} live this session`}
+            />
           </div>
           <div className="mt-4 grid gap-4 lg:grid-cols-3">
             <div className="lg:col-span-2">
               <Timeline />
             </div>
+            <LiveAlertFeed
+              alerts={alerts}
+              live={live}
+              setLive={setLive}
+              muted={muted}
+              setMuted={setMuted}
+            />
             <TopSources />
             <HttpCodes />
-            <div className="panel p-4 lg:col-span-2">
+            <div className="panel p-4 lg:col-span-3">
               <p className="label-caps">Recent events</p>
               <div className="mt-3 overflow-x-auto">
                 <table className="w-full text-left text-xs">
@@ -183,6 +196,13 @@ function Index() {
                 <p className="mt-1 text-xs text-muted-foreground">
                   <span className="text-foreground">Detection:</span> {s.detection}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => emit(s.id)}
+                  className="mt-3 inline-flex items-center gap-2 rounded border border-border px-2.5 py-1 font-mono text-[0.68rem] uppercase tracking-widest text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground"
+                >
+                  Trigger test alert
+                </button>
               </div>
             ))}
           </div>
