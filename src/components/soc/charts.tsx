@@ -5,12 +5,16 @@ export function Timeline() {
   return (
     <div className="panel p-4">
       <p className="label-caps">Detected activity timeline (09:00 - 10:00, 5 min buckets)</p>
-      <div className="mt-4 flex h-32 items-end gap-1.5">
+      <div className="mt-4 flex items-end gap-1.5" style={{ height: 128 }}>
         {metrics.timeline.map((v, i) => (
           <div
             key={i}
-            className="flex-1 rounded-t bg-primary/70 transition-colors hover:bg-primary"
-            style={{ height: `${Math.max((v / max) * 100, 4)}%` }}
+            className="flex-1 rounded-t transition-colors hover:opacity-100"
+            style={{
+              height: `${Math.max(Math.round((v / max) * 128), 6)}px`,
+              backgroundColor: "var(--primary)",
+              opacity: 0.75,
+            }}
             title={`${v} events`}
           />
         ))}
