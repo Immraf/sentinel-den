@@ -7,13 +7,12 @@ export function Timeline() {
       <p className="label-caps">Detected activity timeline (09:00 - 10:00, 5 min buckets)</p>
       <div className="mt-4 flex h-32 items-end gap-1.5">
         {metrics.timeline.map((v, i) => (
-          <div key={i} className="flex-1">
-            <div
-              className="w-full rounded-t bg-primary/70 transition-colors hover:bg-primary"
-              style={{ height: `${(v / max) * 100}%` }}
-              title={`${v} events`}
-            />
-          </div>
+          <div
+            key={i}
+            className="flex-1 rounded-t bg-primary/70 transition-colors hover:bg-primary"
+            style={{ height: `${Math.max((v / max) * 100, 4)}%` }}
+            title={`${v} events`}
+          />
         ))}
       </div>
     </div>
