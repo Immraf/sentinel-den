@@ -127,15 +127,26 @@ function Index() {
             <Stat label="Total security events" value={metrics.totalEvents} hint="last 24h, all hosts" />
             <Stat label="Failed authentication" value={metrics.failedAuth} hint="sshd + sudo" />
             <Stat label="Successful logins" value={metrics.successfulLogins} hint="ssh accepted" />
-            <Stat label="Open alerts" value={metrics.alerts} hint="rule level >= 7" />
+            <Stat
+              label="Open alerts"
+              value={metrics.alerts + alerts.length}
+              hint={`rule level >= 7 · ${alerts.length} live this session`}
+            />
           </div>
           <div className="mt-4 grid gap-4 lg:grid-cols-3">
             <div className="lg:col-span-2">
               <Timeline />
             </div>
+            <LiveAlertFeed
+              alerts={alerts}
+              live={live}
+              setLive={setLive}
+              muted={muted}
+              setMuted={setMuted}
+            />
             <TopSources />
             <HttpCodes />
-            <div className="panel p-4 lg:col-span-2">
+            <div className="panel p-4 lg:col-span-3">
               <p className="label-caps">Recent events</p>
               <div className="mt-3 overflow-x-auto">
                 <table className="w-full text-left text-xs">
