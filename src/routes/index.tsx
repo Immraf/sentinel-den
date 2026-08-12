@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, SeverityTag, Stat } from "@/components/soc/primitives";
 import { HttpCodes, Timeline, TopSources } from "@/components/soc/charts";
+import { LiveAlertFeed, useAlertStream } from "@/components/soc/alert-stream";
 import { LAB, events, findings, metrics, remediation, scenarios, vms } from "@/lib/lab-data";
 
 export const Route = createFileRoute("/")({
