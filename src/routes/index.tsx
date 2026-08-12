@@ -184,6 +184,13 @@ function Index() {
                 <p className="mt-1 text-xs text-muted-foreground">
                   <span className="text-foreground">Detection:</span> {s.detection}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => emit(s.id)}
+                  className="mt-3 inline-flex items-center gap-2 rounded border border-border px-2.5 py-1 font-mono text-[0.68rem] uppercase tracking-widest text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground"
+                >
+                  Trigger test alert
+                </button>
               </div>
             ))}
           </div>
