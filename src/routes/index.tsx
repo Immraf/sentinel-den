@@ -37,6 +37,7 @@ const nav = [
 ];
 
 function Index() {
+  const { alerts, live, setLive, muted, setMuted, emit } = useAlertStream();
   return (
     <div className="min-h-screen">
       <header className="sticky top-0 z-20 border-b border-border bg-background/85 backdrop-blur">
