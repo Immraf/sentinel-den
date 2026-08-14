@@ -34,6 +34,8 @@ const nav = [
   ["investigation", "Investigation"],
   ["findings", "Findings"],
   ["remediation", "Remediation"],
+  ["deliverables", "Deliverables"],
+
 ];
 
 function Index() {
