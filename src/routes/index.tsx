@@ -281,6 +281,34 @@ function Index() {
             </table>
           </div>
         </Section>
+
+        <Section id="deliverables" kicker="Handover" title="Deliverables">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <a
+              href="/downloads/basic-siem-lab-assessment-report.pdf"
+              download
+              className="panel p-4 transition-colors hover:border-primary"
+            >
+              <p className="label-caps">Document</p>
+              <p className="mt-2 font-semibold">Security assessment report (PDF)</p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Executive summary, methodology, six scenarios, findings F-01…F-04 and hardening plan.
+              </p>
+            </a>
+            <a
+              href="/downloads/basic-siem-lab.zip"
+              download
+              className="panel p-4 transition-colors hover:border-primary"
+            >
+              <p className="label-caps">Package</p>
+              <p className="mt-2 font-semibold">Lab package + evidence bundle (ZIP)</p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                lab.conf, five idempotent scripts, Wazuh rules 100201–100601, agent/UFW/SSH configs.
+              </p>
+            </a>
+          </div>
+        </Section>
+
       </main>
 
       <footer className="border-t border-border">
