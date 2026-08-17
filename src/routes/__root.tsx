@@ -85,6 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Isolated VirtualBox SIEM lab with SOC console, detection scenarios and hardening report." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "google-site-verification", content: "07FzpdT0UEJuQWwYRZUYF5N8pmnYRl__EvbFej8y4sY" },
 
     ],
     links: [
